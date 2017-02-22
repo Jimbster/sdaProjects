@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rent.myapplication.drawing.DrawingActivity;
+import com.example.rent.myapplication.todolist.TodoListActivity;
 
 import org.w3c.dom.Text;
 
@@ -48,6 +49,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        TextView TodotextView = (TextView) findViewById(R.id.todolistapplication);
+        TodotextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TodoListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
         final EditText notesEditText = (EditText) findViewById(R.id.MyNoteEditText);
         notesEditText.setText(readText());
         Button saveButton = (Button) findViewById(R.id.save_note);

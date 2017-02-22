@@ -65,7 +65,19 @@
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="helloworld"/>
+            android:text="helloworld"
+            android:id="@+id/helloworld"/>
+        <TextView
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="TODOlist"
+            android:id="@+id/todolistapplication"/>
 
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>
