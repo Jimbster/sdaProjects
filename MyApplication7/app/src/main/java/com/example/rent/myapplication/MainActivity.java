@@ -1,7 +1,10 @@
 package com.example.rent.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.PersistableBundle;
+import android.preference.PreferenceManager;
+import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +24,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String NOTES = "notes";
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
@@ -42,7 +48,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final EditText notesEditText = (EditText) findViewById(R.id.MyNoteEditText);
+        notesEditText.setText(readText());
+        Button saveButton = (Button) findViewById(R.id.save_note);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveText(notesEditText.getText().toString());
+            }
+        });
     }
+    private String readText() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return sharedPreferences.getString(NOTES, "");
+    }
+
+
+    private void saveText(String text) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.edit().putString(NOTES, text).apply();
+    }
+
 
 
 
