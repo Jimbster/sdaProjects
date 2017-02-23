@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".drawing.DrawingActivity"></activity>
         <activity android:name=".gallery.GalleryActivity"></activity>
+        <activity android:name=".todolist.TodoListActivity"
+            android:label="todolist!"></activity>
     </application>
 
 </manifest>
