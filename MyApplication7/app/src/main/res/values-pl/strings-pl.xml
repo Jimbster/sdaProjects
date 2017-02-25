@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">My Application</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="clearv">czysc widok</string>
+    <string name="checked_eng">%d element</string>
+    <plurals name="checked_items_plural">
+        <item quantity="one">%d element</item>
+        <item quantity="few">%d elementy</item>
+        <item quantity="many">%d elementów</item>
+    </plurals>
+
+</resources>

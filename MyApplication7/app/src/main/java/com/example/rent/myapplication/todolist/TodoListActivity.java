@@ -41,8 +41,10 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
             @Override
             public void onClick(View v) {
                 todoListAdapter.addItem(editText.getText().toString());
+                editText.setText("");
             }
         });
+
 
 
     }
@@ -64,8 +66,9 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
     @Override
     public void OnItemCheckStateChanged(int checkedItemsCount) {
         if (checkedItemsCount > 0) {
-            createActionMode();
-            actionMode.setTitle("Checked items" + checkedItemsCount);
+            if (actionMode == null) {
+            createActionMode();}
+            actionMode.setTitle(getResources().getQuantityString(R.plurals.checked_items_plural, checkedItemsCount, checkedItemsCount));
 
         } else {
             if (actionMode != null) {
@@ -106,6 +109,9 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
+
+                todoListAdapter.deselectAllItems();
+                actionMode = null;
 
             }
         });
