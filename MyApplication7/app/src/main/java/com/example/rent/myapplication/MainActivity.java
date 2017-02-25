@@ -18,7 +18,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.example.rent.myapplication.drawing.DrawingActivity;
+import com.example.rent.myapplication.quiz.QuizActivity;
 import com.example.rent.myapplication.todolist.TodoListActivity;
 
 import org.w3c.dom.Text;
@@ -60,7 +62,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        TextView quiz = (TextView) findViewById(R.id.quizapplication);
+        quiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         final EditText notesEditText = (EditText) findViewById(R.id.MyNoteEditText);

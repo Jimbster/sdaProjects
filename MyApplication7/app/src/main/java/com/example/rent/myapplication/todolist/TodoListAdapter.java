@@ -22,6 +22,9 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyView
 
     private List<ToDoListItem> items = new ArrayList<>();
     private OnItemCheckStateChanged checkListener;
+    public TodoListAdapter(List<ToDoListItem> items) {
+        this.items=items;
+    }
 
     public void setCheckListener(OnItemCheckStateChanged checkListener) {
         this.checkListener = checkListener;
@@ -109,4 +112,12 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.MyView
         }
     }
 
+    public List<ToDoListItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ToDoListItem> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
 }

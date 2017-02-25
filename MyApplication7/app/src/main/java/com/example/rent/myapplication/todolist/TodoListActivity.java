@@ -1,6 +1,7 @@
 package com.example.rent.myapplication.todolist;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
@@ -13,12 +14,15 @@ import android.widget.EditText;
 
 import com.example.rent.myapplication.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by RENT on 2017-02-22.
  */
 
 public class TodoListActivity extends AppCompatActivity implements OnItemCheckStateChanged {
 
+    private static final String ADAPTER_DATA = "Adapter.data";
     private TodoListAdapter todoListAdapter;
     private String activityTitle;
     private ActionMode actionMode;
@@ -30,7 +34,11 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
         activityTitle = getSupportActionBar().getTitle().toString();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        todoListAdapter = new TodoListAdapter();
+        if (savedInstanceState != null) {
+            todoListAdapter = new TodoListAdapter(savedInstanceState.<ToDoListItem>getParcelableArrayList(ADAPTER_DATA));
+        } else {
+            todoListAdapter = new TodoListAdapter(new ArrayList<ToDoListItem>());
+        }
         todoListAdapter.setCheckListener(this);
         recyclerView.setAdapter(todoListAdapter);
 
@@ -44,7 +52,6 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
                 editText.setText("");
             }
         });
-
 
 
     }
@@ -67,7 +74,8 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
     public void OnItemCheckStateChanged(int checkedItemsCount) {
         if (checkedItemsCount > 0) {
             if (actionMode == null) {
-            createActionMode();}
+                createActionMode();
+            }
             actionMode.setTitle(getResources().getQuantityString(R.plurals.checked_items_plural, checkedItemsCount, checkedItemsCount));
 
         } else {
@@ -100,11 +108,11 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 
 
-                    if (item.getItemId() == R.id.action_delete) {
-                        todoListAdapter.deleteAllCheckedItems();
-                        return true;
-                    }
-                    return false;
+                if (item.getItemId() == R.id.action_delete) {
+                    todoListAdapter.deleteAllCheckedItems();
+                    return true;
+                }
+                return false;
             }
 
             @Override
@@ -115,5 +123,17 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
 
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(ADAPTER_DATA, new ArrayList<>(todoListAdapter.getItems()));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        todoListAdapter.setItems(savedInstanceState.<ToDoListItem>getParcelableArrayList(ADAPTER_DATA));
     }
 }
