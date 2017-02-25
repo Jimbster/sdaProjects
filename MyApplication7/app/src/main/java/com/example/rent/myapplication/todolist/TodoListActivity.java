@@ -3,6 +3,7 @@ package com.example.rent.myapplication.todolist;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
 
     private TodoListAdapter todoListAdapter;
     private String activityTitle;
+    private ActionMode actionMode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,18 +53,61 @@ public class TodoListActivity extends AppCompatActivity implements OnItemCheckSt
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.delete_item) {
-            todoListAdapter.deleteAllCheckedItems();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == R.id.delete_item) {
+//            todoListAdapter.deleteAllCheckedItems();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void OnItemCheckStateChanged(int checkedItemsCount) {
-        if (checkedItemsCount >0 ) {
-        getSupportActionBar().setTitle("Checked items" + checkedItemsCount);}
-        else getSupportActionBar().setTitle(activityTitle);
+        if (checkedItemsCount > 0) {
+            createActionMode();
+            actionMode.setTitle("Checked items" + checkedItemsCount);
+
+        } else {
+            if (actionMode != null) {
+                actionMode.finish();
+            }
+        }
+
+        getSupportActionBar().setTitle(activityTitle);
+
+
+    }
+
+
+    private void createActionMode() {
+        actionMode = startSupportActionMode(new ActionMode.Callback() {
+
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                mode.getMenuInflater().inflate(R.menu.todolistactionmenu, menu);
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+
+
+                    if (item.getItemId() == R.id.action_delete) {
+                        todoListAdapter.deleteAllCheckedItems();
+                        return true;
+                    }
+                    return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+
+            }
+        });
     }
 }
