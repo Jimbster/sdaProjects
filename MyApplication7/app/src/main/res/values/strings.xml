@@ -4,6 +4,7 @@
     <string name="close">Close</string>
     <string name="clearv">czysc widok</string>
     <string name="checked_eng">%d items</string>
+    <string name="wynik_string">wynik wynosi %d</string>
     <plurals name="checked_items_plural">
         <item quantity="one"> %d item</item>
         <item quantity="other"> %d items</item>

@@ -3,7 +3,7 @@
   "questions": [
     {
       "id": 1,
-      "text": "Głównym komponentem aplikacji androidowej nie jest:",
+      "question": "Głównym komponentem aplikacji androidowej nie jest:",
       "answers": [
         {
           "isCorrect": true,
@@ -20,6 +20,28 @@
         {
           "isCorrect": false,
           "text": "Services"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Wiecej niz jedno zwierze to:",
+      "answers": [
+        {
+          "isCorrect": true,
+          "text": "lama"
+        },
+        {
+          "isCorrect": false,
+          "text": "kanapka"
+        },
+        {
+          "isCorrect": false,
+          "text": "jozef"
+        },
+        {
+          "isCorrect": false,
+          "text": "hm."
         }
       ]
     }
