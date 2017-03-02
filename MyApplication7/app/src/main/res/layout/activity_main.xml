@@ -80,6 +80,18 @@
             android:id="@+id/todolistapplication"/>
 
         <TextView
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Milionerzy"
+        android:id="@+id/quizapplication"/>
+
+        <TextView
             android:clickable="true"
             android:background="?attr/selectableItemBackground"
             android:layout_width="wrap_content"
@@ -88,8 +100,8 @@
             android:layout_gravity="center_horizontal"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="Milionerzy"
-            android:id="@+id/quizapplication"/>
+            android:text="ksiazki"
+            android:id="@+id/ksiazki"/>
 
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

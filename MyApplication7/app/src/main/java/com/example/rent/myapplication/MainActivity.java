@@ -71,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        TextView ksiazki = (TextView) findViewById(R.id.ksiazki);
+        ksiazki.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BookActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         final EditText notesEditText = (EditText) findViewById(R.id.MyNoteEditText);
         notesEditText.setText(readText());
